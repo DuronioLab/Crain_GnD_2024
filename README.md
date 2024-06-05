@@ -4,7 +4,10 @@
 **Table of Contents**
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
-- [Required files](#required-files)
+- [Call H4K20me1 peaks](#call-H4K20me1-peaks)
+    - [Required files](#required-files)
+        - H4K20me1 CUT&RUN fastqs
+        - call_peaks_H4K20me1_CnR.R
 - [Optional files](#optional-files)
 - [Required directory structure](#required-directory-structure)
 - [Expected Output](#expected-output)
@@ -20,5 +23,7 @@ Download data from GEO
 - GSE268820 - GFP-L(3)mbt CUT&RUN
 - GSE268821 - Set8, H4K20, and l(3)mbt mutant RNA-seq
 
-Call peaks 
+## Call H4K20me1 peaks
+
+
 
