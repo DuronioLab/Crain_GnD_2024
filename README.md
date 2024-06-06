@@ -53,9 +53,16 @@
         - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
         - [wt_H4K20me1_gene_expression_correlation.R](#wt_H4K20me1_gene_expression_correlation.R)
 - [Spike-in normalization for CUT&RUN](#Spike-in_normalization_for_CUT&RUN)
+    - [Required files](#required-files)
+        - H4K20me1 CUT&RUN fastqs (GSE268819)
+            - GSM8299933-GSM8299959
+        - H4K20me1_SRPMC_scaling_factors.txt
+        - Run link to snakemake CUT&RUN pipeline
+        - allFrags.bed output from snakemake pipeline
+        - spikeNorm_SRPMC.sh
 - [Make H4K20me1 spike normalized heatmaps](Make_H4K20me1_spike_normalized_heatmaps)
     - [Required files](#required-files)
-        - H4K20me1 spike-normalized bigwigs
+        - H4K20me1 spike-normalized bigwigs (GSE268819)
             - OregonR_spikeNorm_K20me1_allReps_avg.bw
             - Set8null_spikeNorm_K20me1_allReps_avg.bw
             - Set8wt_spikeNorm_K20me1_allReps_avg.bw
