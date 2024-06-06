@@ -7,7 +7,7 @@
 - [Call H4K20me1 peaks](#call-H4K20me1-peaks)
     - [Required files](#required-files)
         - H4K20me1 CUT&RUN fastqs
-        - call_peaks_H4K20me1_CnR.R
+        - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1.R)
 - [Optional files](#optional-files)
 - [Required directory structure](#required-directory-structure)
 - [Expected Output](#expected-output)
