@@ -18,17 +18,18 @@
 - [Annotate H4K20me1 peaks](#annotate_H4K20me1_peaks)
     - [Make upsetplot](#make_upset_plot)
         - [Required files](#required-files)
-            - H4K20me1.vs.no_primary.peaks.txt (GSE268819)
+            - H4K20me1.vs.no_primary.peaks.bed (GSE268819)
             - [make_upsetplot.R](#make_upset_plot.R)
     - [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
         - [Required files](#required-files)
             - H4K20me1.vs.no_primary.peaks.txt (GSE268819)
             - bedtools_intersect.sh
-            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed | sort -u -k4,4 > k20me1_genes_anyOverlap_unique.bed
-            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.1 | sort -u -k4,4 > k20me1_genes_0.1overlap_unique.bed
-            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.25 | sort -u -k4,4 > k20me1_genes_0.25overlap_unique.bed
-            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.50 | sort -u -k4,4 > k20me1_genes_0.50overlap_unique.bed
-            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.75 | sort -u -k4,4 > k20me1_genes_0.75overlap_unique.bed
+            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed | sort -u -k4,4 > k20me1_genes_anyOverlap_unique.bed
+            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.1 | sort -u -k4,4 > k20me1_genes_0.1overlap_unique.bed
+            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.25 | sort -u -k4,4 > k20me1_genes_0.25overlap_unique.bed
+            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.50 | sort -u -k4,4 > k20me1_genes_0.50overlap_unique.bed
+            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.75 | sort -u -k4,4 > k20me1_genes_0.75overlap_unique.bed
+            - k20me1_genes.R
 - [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq)
     - [Required files](#required-files)
         - H4K20me1 ChIP-seq fastqs (GSE47254)
