@@ -55,12 +55,25 @@
 - [Spike-in normalization for CUT&RUN](#Spike-in_normalization_for_CUT&RUN)
 - [Make H4K20me1 spike normalized heatmaps](Make_H4K20me1_spike_normalized_heatmaps)
     - [Required files](#required-files)
-    - 
+        - H4K20me1 spike-normalized bigwigs
             - OregonR_spikeNorm_K20me1_allReps_avg.bw
             - Set8null_spikeNorm_K20me1_allReps_avg.bw
             - Set8wt_spikeNorm_K20me1_allReps_avg.bw
             - Set8rg_spikeNorm_K20me1_allReps_avg.bw
-  - [Call GFP-L(3)mbt peaks](#call-H4K20me1-peaks)
+            - HWT_spikeNorm_K20me1_allReps_avg.bw
+            - K20A_spikeNorm_K20me1_allReps_avg.bw
+            - K20R_spikeNorm_K20me1_allReps_avg.bw
+        - computeMatrix and plotHeatmap.sh
+- [Differential expression analysis Set8, H4K20, and l(3)mbt mutants](#differential_expression_analysis)
+    - [Required files](#required-files)
+        - Whole larvae RNA-seq fastqs (GSE268821)
+            - GSM8299968-8300014
+        - trim and fastq check
+        - Salmon_protein_coding_index
+        - make_Salmon_scripts
+        - sample_sheet_RNA-seq_3wl.txt
+        - [differential_expression_analysis.R](#differential_expression_analysis.R)
+- [Call GFP-L(3)mbt peaks](#call-H4K20me1-peaks)
     - [Required files](#required-files)
         - GFP CUT&RUN fastqs (GSE268820)
               - GSM8299960
