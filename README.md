@@ -6,18 +6,10 @@
 - [Quick Start](#quick-start)
 - [Call H4K20me1 peaks](#call-H4K20me1-peaks)
     - [Required files](#required-files)
-        - H4K20me1 CUT&RUN fastqs (GSE268819)
-            - GSM8299933
-            - GSM8299934
-            - GSM8299935
-            - GSM8299936
-            - GSM8299937
-            - GSM8299938
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
     - [Run code](#run_code)
     - [Expected output](#expected_output)
-        - H4K20me1.vs.no_primary.peaks.bed
 - [Annotate H4K20me1 peaks](#annotate_H4K20me1_peaks)
     - [Make upsetplot](#make_upset_plot)
         - [Required files](#required-files)
@@ -25,17 +17,11 @@
             - [make_upsetplot.R](#make_upset_plot.R)
         - [Run code](#run_code)
         - [Expected output](#expected_output)
-            - Plot in FIGURE 1B
     - [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
         - [Required files](#required-files)
             - H4K20me1.vs.no_primary.peaks.bed (GSE268819)
             - H4K20me1_genes.R
         - [Run code](#run_code)
-            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed | sort -u -k4,4 > k20me1_genes_anyOverlap_unique.bed
-            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.1 | sort -u -k4,4 > k20me1_genes_0.1overlap_unique.bed
-            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.25 | sort -u -k4,4 > k20me1_genes_0.25overlap_unique.bed
-            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.50 | sort -u -k4,4 > k20me1_genes_0.50overlap_unique.bed
-            - bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.75 | sort -u -k4,4 > k20me1_genes_0.75overlap_unique.bed
         - [Expected outputs](#expected_outputs)
             - protein_genes_r6.55.bed
             - k20me1_genes_anyOverlap_unique.bed
@@ -209,7 +195,7 @@
 
 ## Introduction:
 This repository is provides code to reproduce results in Crain et al. Genes & Development 2024. 
-Each Rscript (*.R) or shell script (*.sh) can be run independently, but some are dependent on outputs from previous scripts. Thes dependencies are noted throughout.
+Each Rscript section can be run independently, but some are dependent on outputs from previous sections. These dependencies are noted throughout.
 
 ## Quick Start:
 Download data from GEO
@@ -219,13 +205,41 @@ Download data from GEO
 
 ## Call H4K20me1 peaks
 ### Required files
-#### H4K20me1 CUT&RUN fastq files (GSE268819, GSM8299933-8299938)
+#### H4K20me1 CUT&RUN fastq files (GSE268819)
+GSM8299933
+GSM8299934
+GSM8299935
+GSM8299936
+GSM8299937
+GSM8299938
 These files contain sequencing reads from Oregon-R and Oregon-R no primary control can be downloaded from GEO
 #### CUT&RUN pipeline
 For processing CUT&RUN sequencing files. See documentation here for more information https://github.com/snystrom/cutNrun-pipeline 
 #### call_peaks_H4K20me1_CnR.R
 This R script takes bam files from the CUT&RUN pipeline as input. Aligned reads are binned into 150bp windows that overlap by 50bp using the csaw package and significant windows (OregonR_H4K20me1 vs. OregonR_no_primary) are determined by edgeR. Significant windows within 1kb are merged to make final H4K20me1 peaks.
+### Run code
 ### Expected output
 H4K20me1.vs.no_primary.peaks.bed - a bed file with H4K20me1 peaks. 
 
+## Annotate H4K20me1 peaks
+### Make upsetplot
+#### Required files
+##### H4K20me1.vs.no_primary.peaks.bed (GSE268819)
+This is the peak file generated in the previous section.
+##### make_upsetplot.R
+This Rscript uses ChIPseeker to annotate the peak file and produce an upset plot depicting the genomic annotations of all H4K20me1 peaks. 
+#### Run code
+#### Expected output
+Plot in FIGURE 1B
+### Calculate H4K20me1 peak gene overlap
+#### Required files
+##### H4K20me1.vs.no_primary.peaks.bed (GSE268819)
+##### H4K20me1_genes.R
+#### Run code
+This code uses bedtools to determine overlap of H4K20me1 peaks with genes. H4K20me1_genes.R is used to construct the protein_genes_r6.55.bed file and to create non-overlapping gene bins for each category.
+``` bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed | sort -u -k4,4 > k20me1_genes_anyOverlap_unique.bed
+    bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.1 | sort -u -k4,4 > k20me1_genes_0.1overlap_unique.bed
+    bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.25 | sort -u -k4,4 > k20me1_genes_0.25overlap_unique.bed
+    bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.50 | sort -u -k4,4 > k20me1_genes_0.50overlap_unique.bed
+    bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.75 | sort -u -k4,4 > k20me1_genes_0.75overlap_unique.bed ```
 
