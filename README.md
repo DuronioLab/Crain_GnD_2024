@@ -217,6 +217,10 @@ Download data from GEO
 - GSE268821 - Set8, H4K20, and l(3)mbt mutant RNA-seq
 
 ## Call H4K20me1 peaks
+### Required files
+#### H4K20me1 CUT&RUN fastq files (GSE268819, GSM8299933-8299938)
+These files contain sequencing reads from Oregon-R and Oregon-R no primary control can be downloaded from GEO
+#### CUT&RUN pipeline
 
 
 
