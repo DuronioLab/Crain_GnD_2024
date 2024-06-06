@@ -16,38 +16,38 @@
         - Run (Link to snakemake CUT&RUN pipeline)
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
 - [Annotate H4K20me1 peaks](#annotate_H4K20me1_peaks)
-      - [Make upsetplot](#make_upset_plot)
-          - [Required files](#required-files)
-                - H4K20me1.vs.no_primary.peaks.txt (GSE268819)
-                - [make_upsetplot.R](#make_upset_plot.R)
-      - [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
-          - [Required files](#required-files)
-                - H4K20me1.vs.no_primary.peaks.txt (GSE268819)
-                - bedtools_intersect.sh
-      - [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq)
-          - [Required files](#required-files)
-              - H4K20me1 ChIP-seq fastqs (GSE47254)
-                    - GSM1147213
-                    - GSM1147214
-                    - GSM1147215
-                    - GSM1147216
-      - [Make H4K20me1 gene overlap heatmap]
-          - [Required files](#required-files)
-                - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
-                - processed bigwigs from [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq)
-                - deeptools computeMatrix and plotHeatmap.sh
+    - [Make upsetplot](#make_upset_plot)
+        - [Required files](#required-files)
+            - H4K20me1.vs.no_primary.peaks.txt (GSE268819)
+            - [make_upsetplot.R](#make_upset_plot.R)
+    - [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
+        - [Required files](#required-files)
+            - H4K20me1.vs.no_primary.peaks.txt (GSE268819)
+            - bedtools_intersect.sh
+- [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq)
+    - [Required files](#required-files)
+        - H4K20me1 ChIP-seq fastqs (GSE47254)
+            - GSM1147213
+            - GSM1147214
+            - GSM1147215
+            - GSM1147216
+- [Make H4K20me1 gene overlap heatmap]
+    - [Required files](#required-files)
+        - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
+        - processed bigwigs from [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq)
+        - deeptools computeMatrix and plotHeatmap.sh
 - [H4K20me1 gene expression correlation](#H4K20me1_gene_expression_correlation)
-      - [Required files](#required-files)
-          - Salmon_protein_coding_index
-          - make_Salmon_scripts
-          - Oregon-R whole larvae RNA-seq fastqs (GSE268821)
-          - yw wing disc RNA-seq fastqs (GSE141632)
-              - GSM4210275
-              - GSM4210276
-              - GSM4210277
-          - sample_sheet_wt_RNA-seq.txt
-          - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
-          - [wt_H4K20me1_gene_expression_correlation.R](#wt_H4K20me1_gene_expression_correlation.R)
+    - [Required files](#required-files)
+        - Salmon_protein_coding_index
+        - make_Salmon_scripts
+        - Oregon-R whole larvae RNA-seq fastqs (GSE268821)
+        - yw wing disc RNA-seq fastqs (GSE141632)
+            - GSM4210275
+            - GSM4210276
+            - GSM4210277
+        - sample_sheet_wt_RNA-seq.txt
+        - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
+        - [wt_H4K20me1_gene_expression_correlation.R](#wt_H4K20me1_gene_expression_correlation.R)
   - [Call GFP-L(3)mbt peaks](#call-H4K20me1-peaks)
     - [Required files](#required-files)
         - GFP CUT&RUN fastqs (GSE268820)
