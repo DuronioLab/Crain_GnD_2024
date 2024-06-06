@@ -31,6 +31,9 @@
             - GSM1147214
             - GSM1147215
             - GSM1147216
+        - Run (link for snakemake CUT&RUN pipeline)
+        - all reps of RPGC normalized Oregon-R_H4K20me1, Oregon-R_no_primary, input_H4K20me1, ChiP_H4K20me1
+        - process_rpgc_bw.sh
 - [Make H4K20me1 gene overlap heatmap]
     - [Required files](#required-files)
         - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
@@ -38,23 +41,32 @@
         - deeptools computeMatrix and plotHeatmap.sh
 - [H4K20me1 gene expression correlation](#H4K20me1_gene_expression_correlation)
     - [Required files](#required-files)
-        - Salmon_protein_coding_index
-        - make_Salmon_scripts
         - Oregon-R whole larvae RNA-seq fastqs (GSE268821)
         - yw wing disc RNA-seq fastqs (GSE141632)
             - GSM4210275
             - GSM4210276
             - GSM4210277
+        - trim and fastq check
+        - Salmon_protein_coding_index
+        - make_Salmon_scripts
         - sample_sheet_wt_RNA-seq.txt
         - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
         - [wt_H4K20me1_gene_expression_correlation.R](#wt_H4K20me1_gene_expression_correlation.R)
+- [Spike-in normalization for CUT&RUN](#Spike-in_normalization_for_CUT&RUN)
+- [Make H4K20me1 spike normalized heatmaps](Make_H4K20me1_spike_normalized_heatmaps)
+    - [Required files](#required-files)
+    - 
+            - OregonR_spikeNorm_K20me1_allReps_avg.bw
+            - Set8null_spikeNorm_K20me1_allReps_avg.bw
+            - Set8wt_spikeNorm_K20me1_allReps_avg.bw
+            - Set8rg_spikeNorm_K20me1_allReps_avg.bw
   - [Call GFP-L(3)mbt peaks](#call-H4K20me1-peaks)
     - [Required files](#required-files)
         - GFP CUT&RUN fastqs (GSE268820)
-              - GFP-L3mbt_rep1_L001_R1.fastq.gz GFP-L3mbt_rep1_L001_R2.fastq.gz GFP-L3mbt_rep1_L002_R1.fastq.gz GFP-L3mbt_rep1_L002_R2.fastq.gz
-              - GFP-L3mbt_rep2_L001_R1.fastq.gz GFP-L3mbt_rep2_L001_R2.fastq.gz GFP-L3mbt_rep2_L002_R1.fastq.gz GFP-L3mbt_rep2_L002_R2.fastq.gz
-              - OregonR_rep1_L001_R1.fastq.gz OregonR_rep1_L001_R2.fastq.gz OregonR_rep1_L002_R1.fastq.gz OregonR_rep1_L002_R2.fastq.gz
-              - OregonR_rep2_L001_R1.fastq.gz OregonR_rep2_L001_R2.fastq.gz OregonR_rep2_L002_R1.fastq.gz OregonR_rep2_L002_R2.fastq.gz
+              - GSM8299960
+              - GSM8299961
+              - GSM8299962
+              - GSM8299963
         - Link to snakemake CUT&RUN pipeline
         - [call_peaks_GFP_CnR.R](#call_peaks_GFP_CnR.R)
 - [Optional files](#optional-files)
