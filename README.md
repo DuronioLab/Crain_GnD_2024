@@ -13,7 +13,7 @@
             - GSM8299936
             - GSM8299937
             - GSM8299938
-        - [(Link to snakemake CUT&RUN pipeline)](https://github.com/snystrom/cutNrun-pipeline)
+        - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
 - [Annotate H4K20me1 peaks](#annotate_H4K20me1_peaks)
     - [Make upsetplot](#make_upset_plot)
@@ -36,14 +36,21 @@
             - GSM1147214
             - GSM1147215
             - GSM1147216
-        - [Run (link for snakemake CUT&RUN pipeline)](https://github.com/snystrom/cutNrun-pipeline)
-        - all reps of RPGC normalized Oregon-R_H4K20me1, Oregon-R_no_primary, input_H4K20me1, ChiP_H4K20me1
-        - process_rpgc_bw.sh
+        - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
+        - all reps of RPGC normalized Oregon-R_H4K20me1, Oregon-R_no_primary, input_H4K20me1, ChIP_H4K20me1
+        - In cutNrun-pipeline/BigWig/
+            - deeptools bigwigAverage -b OregonR_H4K20me1_rep1_all_Frags_rpgcNorm.bw OregonR_H4K20me1_rep2_all_Frags_rpgcNorm.bw OregonR_H4K20me1_rep3_all_Frags_rpgcNorm.bw -bs 1 -o OregonR_H4K20me1_all_Frags_rpgcNorm_allReps_avg.bw
+            - deeptools bigwigAverage -b OregonR_no_primary_rep1_all_Frags_rpgcNorm.bw OregonR_no_primary_rep2_all_Frags_rpgcNorm.bw OregonR_no_primary_rep3_all_Frags_rpgcNorm.bw -bs 1 -o OregonR_no_primary_all_Frags_rpgcNorm_allReps_avg.bw
+            - deeptools bigwigAverage -b ChIP_H4K20me1_rep1_all_Frags_rpgcNorm.bw ChIP_H4K20me1_rep2_all_Frags_rpgcNorm.bw -bs 1 -o ChIP_H4K20me1_all_Frags_rpgcNorm_allReps_avg.bw
+            - deeptools bigwigAverage -b input_H4K20me1_rep1_all_Frags_rpgcNorm.bw input_H4K20me1_rep2_all_Frags_rpgcNorm.bw -bs 1 -o input_H4K20me1_all_Frags_rpgcNorm_allReps_avg.bw
+        - deeptools bigwigCompare -b1 OregonR_H4K20me1_all_Frags_rpgcNorm_allReps_avg.bw -b2 OregonR_no_primary_all_Frags_rpgcNorm_allReps_avg.bw -bs 1 -o OregonR_H4K20me1_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw
+        - deeptools bigwigCompare -b1 ChIP_H4K20me1_all_Frags_rpgcNorm_allReps_avg.bw -b2 input_H4K20me1_all_Frags_rpgcNorm_allReps_avg.bw -bs 1 -o ChIP_H4K20me1_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw
+        - zNorm.R
 - [Make H4K20me1 gene overlap heatmap]
     - [Required files](#required-files)
         - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
         - processed bigwigs from [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq)
-        - deeptools computeMatrix and plotHeatmap.sh
+        - deeptools computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.75.bed' 'k20me1_genes_0.5.bed' 'k20me1_genes_0.25.bed' 'k20me1_genes_0.1.bed' 'nok20me1_genes.bed'  --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'h4k20me1_modEncode_rpgc_avg_allReps_ratioCtrl_zNorm.bw'  --samplesLabel 'Oregon-R wing disc CUT&RUN' 'Oregon-R whole larvae ChIP-seq'  --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50 --transcriptID transcript --exonID exon --transcript_id_designator transcript_id
 - [H4K20me1 gene expression correlation](#H4K20me1_gene_expression_correlation)
     - [Required files](#required-files)
         - Oregon-R whole larvae RNA-seq fastqs (GSE268821)
@@ -62,7 +69,7 @@
         - H4K20me1 CUT&RUN fastqs (GSE268819)
             - GSM8299933-GSM8299959
         - H4K20me1_SRPMC_scaling_factors.txt
-        - [Run link to snakemake CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
+        - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - allFrags.bed output from snakemake pipeline
         - spikeNorm_SRPMC.sh
 - [Make H4K20me1 spike normalized heatmaps](Make_H4K20me1_spike_normalized_heatmaps)
@@ -88,11 +95,11 @@
 - [Call GFP-L(3)mbt peaks](#call-H4K20me1-peaks)
     - [Required files](#required-files)
         - GFP CUT&RUN fastqs (GSE268820)
-              - GSM8299960
-              - GSM8299961
-              - GSM8299962
-              - GSM8299963
-        - [Link to snakemake CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
+            - GSM8299960
+            - GSM8299961
+            - GSM8299962
+            - GSM8299963
+        - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_GFP_CnR.R](#call_peaks_GFP_CnR.R)
 - [Optional files](#optional-files)
 - [Required directory structure](#required-directory-structure)
