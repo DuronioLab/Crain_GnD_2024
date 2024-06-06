@@ -16,7 +16,8 @@
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
     - [Run code](#run_code)
-    - [Expected outputs](#expected_outputs)
+    - [Expected output](#expected_output)
+        - H4K20me1.vs.no_primary.peaks.bed
 - [Annotate H4K20me1 peaks](#annotate_H4K20me1_peaks)
     - [Make upsetplot](#make_upset_plot)
         - [Required files](#required-files)
@@ -221,6 +222,10 @@ Download data from GEO
 #### H4K20me1 CUT&RUN fastq files (GSE268819, GSM8299933-8299938)
 These files contain sequencing reads from Oregon-R and Oregon-R no primary control can be downloaded from GEO
 #### CUT&RUN pipeline
-
+For processing CUT&RUN sequencing files. See documentation here for more information https://github.com/snystrom/cutNrun-pipeline 
+#### call_peaks_H4K20me1_CnR.R
+This R script takes bam files from the CUT&RUN pipeline as input. Aligned reads are binned into 150bp windows that overlap by 50bp using the csaw package and significant windows (OregonR_H4K20me1 vs. OregonR_no_primary) are determined by edgeR. Significant windows within 1kb are merged to make final H4K20me1 peaks.
+### Expected output
+H4K20me1.vs.no_primary.peaks.bed - a bed file with H4K20me1 peaks. 
 
 
