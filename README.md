@@ -7,13 +7,13 @@
 - [Call H4K20me1 peaks](#call-H4K20me1-peaks)
     - [Required files](#required-files)
         - H4K20me1 CUT&RUN fastqs (GSE268819)
-              - GSM8299933
-              - GSM8299934
-              - GSM8299935
-              - GSM8299936
-              - GSM8299937
-              - GSM8299938
-        - Run (Link to snakemake CUT&RUN pipeline)
+            - GSM8299933
+            - GSM8299934
+            - GSM8299935
+            - GSM8299936
+            - GSM8299937
+            - GSM8299938
+        - [(Link to snakemake CUT&RUN pipeline)](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
 - [Annotate H4K20me1 peaks](#annotate_H4K20me1_peaks)
     - [Make upsetplot](#make_upset_plot)
@@ -24,6 +24,11 @@
         - [Required files](#required-files)
             - H4K20me1.vs.no_primary.peaks.txt (GSE268819)
             - bedtools_intersect.sh
+            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed | sort -u -k4,4 > k20me1_genes_anyOverlap_unique.bed
+            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.1 | sort -u -k4,4 > k20me1_genes_0.1overlap_unique.bed
+            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.25 | sort -u -k4,4 > k20me1_genes_0.25overlap_unique.bed
+            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.50 | sort -u -k4,4 > k20me1_genes_0.50overlap_unique.bed
+            - bedtools intersect -a genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.75 | sort -u -k4,4 > k20me1_genes_0.75overlap_unique.bed
 - [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq)
     - [Required files](#required-files)
         - H4K20me1 ChIP-seq fastqs (GSE47254)
@@ -31,7 +36,7 @@
             - GSM1147214
             - GSM1147215
             - GSM1147216
-        - Run (link for snakemake CUT&RUN pipeline)
+        - [Run (link for snakemake CUT&RUN pipeline)](https://github.com/snystrom/cutNrun-pipeline)
         - all reps of RPGC normalized Oregon-R_H4K20me1, Oregon-R_no_primary, input_H4K20me1, ChiP_H4K20me1
         - process_rpgc_bw.sh
 - [Make H4K20me1 gene overlap heatmap]
@@ -57,7 +62,7 @@
         - H4K20me1 CUT&RUN fastqs (GSE268819)
             - GSM8299933-GSM8299959
         - H4K20me1_SRPMC_scaling_factors.txt
-        - Run link to snakemake CUT&RUN pipeline
+        - [Run link to snakemake CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - allFrags.bed output from snakemake pipeline
         - spikeNorm_SRPMC.sh
 - [Make H4K20me1 spike normalized heatmaps](Make_H4K20me1_spike_normalized_heatmaps)
@@ -87,7 +92,7 @@
               - GSM8299961
               - GSM8299962
               - GSM8299963
-        - Link to snakemake CUT&RUN pipeline
+        - [Link to snakemake CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_GFP_CnR.R](#call_peaks_GFP_CnR.R)
 - [Optional files](#optional-files)
 - [Required directory structure](#required-directory-structure)
