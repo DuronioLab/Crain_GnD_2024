@@ -26,7 +26,7 @@
         - [Expected outputs](#expected_outputs)
 - [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq)
     - [Required files](#required-files)
-        - [H4K20me1 ChIP-seq fastqs (GSE47254)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi)
+        - [H4K20me1 ChIP-seq fastqs (GSE47254)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE47254)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
     - [Run code](#run_code)
@@ -40,8 +40,8 @@
         - Plot in FIGURE 1D
 - [H4K20me1 gene expression correlation](#H4K20me1_gene_expression_correlation)
     - [Required files](#required-files)
-        - Oregon-R whole larvae RNA-seq fastqs (GSE268821)
-        - yw wing disc RNA-seq fastqs (GSE141632)
+        - [Oregon-R whole larvae RNA-seq fastqs (GSE268821)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268821)
+        - [yw wing disc RNA-seq fastqs (GSE141632)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE141632)
         - [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
         - Salmon_protein_coding_index
         - make_Salmon_scripts
@@ -53,7 +53,7 @@
         - Plot in FIGURE 1E
 - [Spike-in normalization for H4K20me1 CUT&RUN](#Spike-in_normalization_for_H4K20me1_CUT&RUN)
     - [Required files](#required-files)
-        - H4K20me1 CUT&RUN fastqs (GSE268819)
+        - [H4K20me1 CUT&RUN fastq files (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
         - H4K20me1_SRPMC_scaling_factors.txt
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - spikeNorm_SRPMC.sh ##NEED this still
@@ -62,13 +62,13 @@
         - Spike-in normalized CUT&RUN bigwigs
 - [Make H4K20me1 spike-in normalized heatmaps](Make_H4K20me1_spike-in_normalized_heatmaps)
     - [Required files](#required-files)
-        - H4K20me1 spike-normalized bigwigs (GSE268819)
+        - [H4K20me1 spike-normalized bigwigs (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
     - [Run code](#run_code)
     - [Expected outputs](#expected_outputs)
         - Plot in FIGURE 2A
 - [Differential expression analysis Set8, H4K20, and l(3)mbt mutants](#differential_expression_analysis)
     - [Required files](#required-files)
-        - Whole larvae RNA-seq fastq files (GSE268821)
+        - [Whole larvae RNA-seq fastq files (GSE268821)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268821)
         - [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
         - Salmon_protein_coding_index #NEED STILL
         - make_Salmon_scripts #NEED STILL
@@ -79,7 +79,7 @@
         - Plots in FIGURES 3 and 5
 - [Call GFP-L(3)mbt peaks](#call_L(3)mbt_peaks)
     - [Required files](#required-files)
-        - GFP CUT&RUN fastqs (GSE268820)
+        - [GFP CUT&RUN fastq files (GSE268820)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268820)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_GFP_CnR.R](#call_peaks_GFP_CnR.R)
     - [Run code](#run_code)
@@ -87,8 +87,8 @@
         - GFP-L3mbt.vs.OregonR.peaks.bed
 - [Process wild-type GFP-L(3)mbt CUT&RUN and L(3)mbt ChIP-seq](#Process_wild-type_GFP_CUT&RUN)
     - [Required files](#required-files)
-        - GFP-L(3)mbt CUT&RUN fastq files (GSE268820)
-        - L(3)mbt ChIP-seq fastq files (GSE29206)
+        - [GFP CUT&RUN fastq files (GSE268820)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268820)
+        - [L(3)mbt ChIP-seq fastq files (GSE29206)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE29206)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
     - [Run code](#run_code)
@@ -102,7 +102,7 @@
         - Plots in FIGURES 6C and D
 - [Spike-in normalization for GFP CUT&RUN](#Spike-in_normalization_for_GFP_CUT&RUN)
     - [Required files](#required-files)
-        - GFP CUT&RUN fastq files (GSE268820)
+        - [GFP CUT&RUN fastq files (GSE268820)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268820)
         - GFP_SRPMC_scaling_factors.txt
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - allFrags.bed output from snakemake pipeline
@@ -112,7 +112,7 @@
         - Spike-in normalized bigwigs
 - [Make H4K20me1 and L(3)mbt heatmap](#Make_H4K20me1_and_L(3)mbt_heatmap)
     - [Required files](#required-files)
-        - GFP-L3mbt.vs.OregonR.peaks.bed
+        - [GFP-L3mbt.vs.OregonR.peaks.bed](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268820)
         - spike-in normalized bigwigs from [Spike-in normalization for GFP CUT&RUN](#Spike-in_normalization_for_GFP_CUT&RUN)
     - [Run code](#run_code)
     - [Expected output](#expected_output)
