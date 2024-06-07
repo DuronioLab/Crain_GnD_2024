@@ -8,6 +8,7 @@
     - [Required files](#required-files)
         - [H4K20me1 CUT&RUN fastq files (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
+        - [H4K20me1_CnR_sample_sheet](#H4K20me1_CnR_sample_sheet)
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
     - [Run code](#run_code)
     - [Expected output](#expected_output)
@@ -54,9 +55,9 @@
 - [Spike-in normalization for H4K20me1 CUT&RUN](#Spike-in_normalization_for_H4K20me1_CUT&RUN)
     - [Required files](#required-files)
         - [H4K20me1 CUT&RUN fastq files (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
-        - H4K20me1_SRPMC_scaling_factors.txt
+        - [H4K20me1_CnR_sample_sheet](#H4K20me1_CnR_sample_sheet)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
-        - spikeNorm_SRPMC.sh ##NEED this still
+        - [gfp_spikeNorm_SRPMC.sh](#gfp_spikeNorm_SRPMC.sh)
     - [Run code](#run_code)
     - [Expected outputs](#expected_outputs)
         - Spike-in normalized CUT&RUN bigwigs
@@ -81,6 +82,7 @@
     - [Required files](#required-files)
         - [GFP CUT&RUN fastq files (GSE268820)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268820)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
+        - [GFP-l3mbt_CnR_sample_sheet](#GFP-l3mbt_CnR_sample_sheet)
         - [call_peaks_GFP_CnR.R](#call_peaks_GFP_CnR.R)
     - [Run code](#run_code)
     - [Expected outputs](#expected_outputs)
@@ -103,10 +105,9 @@
 - [Spike-in normalization for GFP CUT&RUN](#Spike-in_normalization_for_GFP_CUT&RUN)
     - [Required files](#required-files)
         - [GFP CUT&RUN fastq files (GSE268820)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268820)
-        - GFP_SRPMC_scaling_factors.txt
+        - [GFP-l3mbt_CnR_sample_sheet](#GFP-l3mbt_CnR_sample_sheet)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
-        - allFrags.bed output from snakemake pipeline
-        - spikeNorm_SRPMC.sh ##NEED THIS STILL
+        - [gfp_spikeNorm_SRPMC.sh](#gfp_spikeNorm_SRPMC.sh)
     - [Run code](#run_code)
     - [Expected output](#expected_output)
         - Spike-in normalized bigwigs
