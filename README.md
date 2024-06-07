@@ -44,12 +44,13 @@
         - [Oregon-R whole larvae RNA-seq fastqs (GSE268821)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268821)
         - [yw wing disc RNA-seq fastqs (GSE141632)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE141632)
         - [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
-        - Salmon_protein_coding_index
-        - make_Salmon_scripts
-        - sample_sheet_wt_RNA-seq.txt
+        - [run_salmon.py](#run_salmon.py)
+        - [sample_sheet_RNA-seq_wild-type.txt](#sample_sheet_RNA-seq_wild-type.txt)
         - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
         - [wt_H4K20me1_gene_expression_correlation.R](#wt_H4K20me1_gene_expression_correlation.R)
     - [Run code](#run_code)
+        - [Build salmon index](#build_salmon_index)
+        - [Run Salmon](#run_salmon)
     - [Expected outputs](#expected_outputs)
         - Plot in FIGURE 1E
 - [Spike-in normalization for H4K20me1 CUT&RUN](#Spike-in_normalization_for_H4K20me1_CUT&RUN)
@@ -71,9 +72,8 @@
     - [Required files](#required-files)
         - [Whole larvae RNA-seq fastq files (GSE268821)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268821)
         - [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
-        - Salmon_protein_coding_index #NEED STILL
-        - make_Salmon_scripts #NEED STILL
-        - sample_sheet_RNA-seq_3wl.txt
+        - [run_salmon.py](#run_salmon.py)
+        - [sample_sheet_RNA-seq_3wl.txt](#sample_sheet_RNA-seq_3wl.txt)
         - [differential_expression_analysis.R](#differential_expression_analysis.R)
     - [Run code](#run_code)
     - [Expected outputs](#expected_outputs)
