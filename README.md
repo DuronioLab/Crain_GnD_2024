@@ -6,7 +6,7 @@
 - [Quick Start](#quick-start)
 - [Call H4K20me1 peaks](#call-H4K20me1-peaks)
     - [Required files](#required-files)
-        - H4K20me1 CUT&RUN fastq files (GSE268819)
+        - [H4K20me1 CUT&RUN fastq files (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
     - [Run code](#run_code)
