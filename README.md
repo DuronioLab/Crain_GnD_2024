@@ -68,8 +68,7 @@
         - Plot in FIGURE 2A
 - [Differential expression analysis Set8, H4K20, and l(3)mbt mutants](#differential_expression_analysis)
     - [Required files](#required-files)
-        - Whole larvae RNA-seq fastqs (GSE268821)
-            - GSM8299968-8300014
+        - Whole larvae RNA-seq fastq files (GSE268821)
         - [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
         - Salmon_protein_coding_index #NEED STILL
         - make_Salmon_scripts #NEED STILL
@@ -81,10 +80,6 @@
 - [Call GFP-L(3)mbt peaks](#call_L(3)mbt_peaks)
     - [Required files](#required-files)
         - GFP CUT&RUN fastqs (GSE268820)
-            - GSM8299960
-            - GSM8299961
-            - GSM8299962
-            - GSM8299963
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [call_peaks_GFP_CnR.R](#call_peaks_GFP_CnR.R)
     - [Run code](#run_code)
@@ -92,40 +87,22 @@
         - GFP-L3mbt.vs.OregonR.peaks.bed
 - [Process wild-type GFP-L(3)mbt CUT&RUN and L(3)mbt ChIP-seq](#Process_wild-type_GFP_CUT&RUN)
     - [Required files](#required-files)
-        - L(3)mbt ChIP-seq fastqs (GSE29206)
-            - GSM722523
-            - GSM722524
-            - GSM722525
-            - GSM722526
+        - GFP-L(3)mbt CUT&RUN fastq files (GSE268820)
+        - L(3)mbt ChIP-seq fastq files (GSE29206)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
     - [Run code](#run_code)
-            - deeptools bigwigAverage -b l3mbtGFP_rep1_all_Frags_rpgcNorm.bw l3mbtGFP_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbtGFP_all_Frags_rpgcNorm_allReps_avg.bw
-            - deeptools bigwigAverage -b OregonR_rep1_all_Frags_rpgcNorm.bw OregonR_rep2_all_Frags_rpgcNorm.bw -bs 1 -o OregonR_all_Frags_rpgcNorm_allReps_avg.bw
-            - deeptools bigwigAverage -b l3mbt_ChIP_rep1_all_Frags_rpgcNorm.bw l3mbt_ChIP_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg.bw
-            - deeptools bigwigAverage -b l3mbt_input_rep1_all_Frags_rpgcNorm.bw l3mbt_input_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbt_input_all_Frags_rpgcNorm_allReps_avg.bw
-        - deeptools bigwigCompare -b1 l3mbtGFP_all_Frags_rpgcNorm_allReps_avg.bw -b2 OregonR_all_Frags_rpgcNorm_allReps_avg.bw -bs 1 -o l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw
-        - deeptools bigwigCompare -b1 l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg.bw -b2 l3mbt_input_all_Frags_rpgcNorm_allReps_avg.bw -bs 1 -o l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw
-        - zNorm.R
     - [Expected outputs](#expected_outputs)
-        - all reps of RPGC normalized l3mbtGFP_GFP, Oregon-R_GFP, l3mbt_ChIP, and l3mbt_input in cutNrun-pipeline/BigWig/
-        - l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw
-        - l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw
 - [Make H4K20me1 and L(3)mbt heatmaps](#Make_H4K20me1_and_L(3)mbt_heatmap)
     - [Required files](#required-files)
-        - k20me1_0.5_genes_unique.bed from [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
+        - k20me1_genes_0.5.bed from [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
         - processed bigwigs from [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq) and [Process wild-type GFP-L(3)mbt CUT&RUN and L(3)mbt ChIP-seq](#Process_wild-type_GFP_CUT&RUN)
     - [Run code](#run_code)
-        - deeptools computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.5.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-        - deeptools plotProfile
-        - deeptools computeMatrix reference-point --regionsFileName 'genes_r6.55.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --referencePoint TSS --beforeRegionStartLength 3000 --afterRegionStartLength 3000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-        - deeptools plotHeatmap
     - [Expected output](#expected_output)
-        - Plot in FIGURES 6C and 6D
+        - Plots in FIGURES 6C and D
 - [Spike-in normalization for GFP CUT&RUN](#Spike-in_normalization_for_GFP_CUT&RUN)
     - [Required files](#required-files)
-        - GFP CUT&RUN fastqs (GSE268820)
-            - GSM8299960-GSM8299967
+        - GFP CUT&RUN fastq files (GSE268820)
         - GFP_SRPMC_scaling_factors.txt
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
         - allFrags.bed output from snakemake pipeline
@@ -138,15 +115,8 @@
         - GFP-L3mbt.vs.OregonR.peaks.bed
         - spike-in normalized bigwigs from [Spike-in normalization for GFP CUT&RUN](#Spike-in_normalization_for_GFP_CUT&RUN)
     - [Run code](#run_code)
-        - deeptools computeMatrix reference-point --regionsFileName 'GFP-L3mbt.vs.OregonR.peaks.bed' --scoreFileName 'GFP-L3mbt_spikeNorm_GFP_allReps_avg.bw' 'HWT_His4rnull_spikeNorm_GFP_allReps_avg.bw' 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'l3mbtGFP' 'HWT_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-        - deeptools plotHeatmap
-        - deeptools computeMatrix reference-point --regionsFileName 'sorted/filtered regions from l3mbtGFP and HWT_His4rnull_l3mbtGFP' --scoreFileName 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'H4K20R_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-        - deeptools plotHeatmap
     - [Expected output](#expected_output)
         - Plots in FIGURE 6F
-- [Optional files](#optional-files)
-- [Required directory structure](#required-directory-structure)
-- [Expected Output](#expected-output)
 - [Acknowledgements](#acknowledgements)
     - Markus, Jeanne-Marie, Spencer, Matt
 
@@ -237,14 +207,20 @@ deeptools bigwigAverage -b input_H4K20me1_rep1_allFrags_rpgcNorm.bw input_H4K20m
 deeptools bigwigCompare -b1 OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw -b2 OregonR_no_primary_allFrags_rpgcNorm_allReps_avg.bw -bs 1 -o OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw
 deeptools bigwigCompare -b1 ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw -b2 input_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw -bs 1 -o ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw
 ```
-Pass OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw and ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw to [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
+Pass OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw and ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw individually to [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
 ### Expected outputs
-From [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline) cutNrun-pipeline/BigWig/
+#### From [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline) cutNrun-pipeline/BigWig/
     - OregonR_H4K20me1_rep1_allFrags_rpgcNorm.bw
+    - OregonR_H4K20me1_rep2_allFrags_rpgcNorm.bw
+    - OregonR_H4K20me1_rep3_allFrags_rpgcNorm.bw
     - OregonR_no_primary_rep1_allFrags_rpgcNorm.bw
+    - OregonR_no_primary_rep2_allFrags_rpgcNorm.bw
+    - OregonR_no_primary_rep3_allFrags_rpgcNorm.bw
     - ChIP_H4K20me1_rep1_allFrags_rpgcNorm.bw
+    - ChIP_H4K20me1_rep2_allFrags_rpgcNorm.bw
     - input_H4K20me1_rep1_allFrags_rpgcNorm.bw
-From [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
+    - input_H4K20me1_rep2_allFrags_rpgcNorm.bw
+#### From [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
     - OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw
     - ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw
 
@@ -326,3 +302,96 @@ deeptools plotHeatmap
 ### Required files
 #### Whole larvae RNA-seq fastq files (GSE268821)
 GSM8299968-8300014
+#### [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
+#### Salmon_protein_coding_index #NEED STILL
+#### make_Salmon_scripts #NEED STILL
+#### sample_sheet_RNA-seq_3wl.txt
+#### [differential_expression_analysis.R](#differential_expression_analysis.R)
+### Run code
+### Expected outputs
+#### Plots in FIGURES 3 and 5
+
+## Call GFP-L(3)mbt peaks
+### Required files
+#### GFP CUT&RUN fastq files (GSE268820)
+GSM8299960-8299963
+#### [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
+#### call_peaks_GFP_CnR.R
+### Run code
+### Expected outputs
+#### GFP-L3mbt.vs.OregonR.peaks.bed
+
+## Process wild-type GFP-L(3)mbt CUT&RUN and L(3)mbt ChIP-seq
+### Required files
+#### GFP-L(3)mbt CUT&RUN fastq files
+GSM8299960 GSM8299961
+#### L(3)mbt ChIP-seq fastq files (GSE29206)
+GSM722523-722526
+#### [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
+#### [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
+### Run code
+```
+deeptools bigwigAverage -b l3mbtGFP_rep1_all_Frags_rpgcNorm.bw l3mbtGFP_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbtGFP_all_Frags_rpgcNorm_allReps_avg.bw
+deeptools bigwigAverage -b OregonR_rep1_all_Frags_rpgcNorm.bw OregonR_rep2_all_Frags_rpgcNorm.bw -bs 1 -o OregonR_all_Frags_rpgcNorm_allReps_avg.bw
+deeptools bigwigAverage -b l3mbt_ChIP_rep1_all_Frags_rpgcNorm.bw l3mbt_ChIP_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg.bw
+deeptools bigwigAverage -b l3mbt_input_rep1_all_Frags_rpgcNorm.bw l3mbt_input_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbt_input_all_Frags_rpgcNorm_allReps_avg.bw
+deeptools bigwigCompare -b1 l3mbtGFP_all_Frags_rpgcNorm_allReps_avg.bw -b2 OregonR_all_Frags_rpgcNorm_allReps_avg.bw -bs 1 -o l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw
+deeptools bigwigCompare -b1 l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg.bw -b2 l3mbt_input_all_Frags_rpgcNorm_allReps_avg.bw -bs 1 -o l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw
+```
+Pass l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw and l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw individually to [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
+### Expected outputs
+#### From [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline) cutNrun-pipeline/BigWig/
+    - l3mbtGFP_rep1_all_Frags_rpgcNorm.bw
+    - l3mbtGFP_rep2_all_Frags_rpgcNorm.bw
+    - OregonR_rep1_all_Frags_rpgcNorm.bw
+    - OregonR_rep2_all_Frags_rpgcNorm.bw
+    - l3mbt_ChIP_rep1_all_Frags_rpgcNorm.bw 
+    - l3mbt_ChIP_rep2_all_Frags_rpgcNorm.bw
+    - l3mbt_input_rep1_all_Frags_rpgcNorm.bw 
+    - l3mbt_input_rep2_all_Frags_rpgcNorm.bw
+#### From [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
+    - l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw
+    - l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw
+
+## Make H4K20me1 and L(3)mbt heatmaps
+### Required files
+#### k20me1_genes_0.5.bed from [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
+#### processed bigwigs from [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq) and [Process wild-type GFP-L(3)mbt CUT&RUN and L(3)mbt ChIP-seq](#Process_wild-type_GFP_CUT&RUN)
+### Run code
+```
+deeptools computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.5.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
+deeptools plotProfile
+```
+```
+deeptools computeMatrix reference-point --regionsFileName 'genes_r6.55.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --referencePoint TSS --beforeRegionStartLength 3000 --afterRegionStartLength 3000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
+deeptools plotHeatmap
+```
+### Expected outputs
+Plots in FIGURES 6C and D
+
+## Spike-in normalization for GFP CUT&RUN
+### Required files
+#### GFP CUT&RUN fastq files (GSE268820)
+GSM8299960-GSM8299967
+#### GFP_SRPMC_scaling_factors.txt
+#### [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
+#### spikeNorm_SRPMC.sh ##NEED THIS STILL
+### Run code
+### Expected outputs
+Spike-in normalized bigwigs
+
+## Make H4K20 mutant L(3)mbt heatmaps
+### Required files
+#### GFP-L3mbt.vs.OregonR.peaks.bed
+#### spike-in normalized bigwigs from [Spike-in normalization for GFP CUT&RUN](#Spike-in_normalization_for_GFP_CUT&RUN)
+### Run code
+```
+deeptools computeMatrix reference-point --regionsFileName 'GFP-L3mbt.vs.OregonR.peaks.bed' --scoreFileName 'GFP-L3mbt_spikeNorm_GFP_allReps_avg.bw' 'HWT_His4rnull_spikeNorm_GFP_allReps_avg.bw' 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'l3mbtGFP' 'HWT_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean' --missingDataAsZero --binSize 50
+deeptools plotHeatmap
+
+deeptools computeMatrix reference-point --regionsFileName 'sorted/filtered regions from l3mbtGFP and HWT_His4rnull_l3mbtGFP' --scoreFileName 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'H4K20R_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean' --missingDataAsZero --binSize 50
+deeptools plotHeatmap
+```
+### Expected outputs
+Plots in FIGURE 6F
+
