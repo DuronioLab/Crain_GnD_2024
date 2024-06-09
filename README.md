@@ -45,6 +45,10 @@
         - [Oregon-R whole larvae RNA-seq fastqs (GSE268821)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268821)
         - [yw wing disc RNA-seq fastqs (GSE141632)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE141632)
         - [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
+        - [build_salmon_index.sh](#build_salmon_index)
+        - [dmel-all-transcript-r6.55.fasta.gz](#dmel-all-transcript-r6.55.fasta.gz)
+        - [dmel-all-chromosome-r6.55.fasta.gz](#dmel-all-chromosome-r6.55.fasta.gz)
+        - [decoys.txt](#decoys.txt)
         - [run_salmon.py](#run_salmon.py)
         - [sample_sheet_RNA-seq_wild-type.txt](#sample_sheet_RNA-seq_wild-type.txt)
         - gene percentage overlap bed files generated in [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
@@ -178,6 +182,7 @@ Rscript that takes H4K20me1 gene overlap .bed files and generates the nok20me1.b
 Download dmel-all-r6.55.gtf from FlyBase. Run make_gene_bed_from_gtf.R to generate protein_genes_r6.55.bed file.
 Then use bedtools to determine overlap of H4K20me1 peaks with genes.
 ```
+module load bedtools
 bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed | sort -u -k4,4 > k20me1_genes_anyOverlap.bed
 bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.1 | sort -u -k4,4 > k20me1_genes_0.1.bed
 bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.25 | sort -u -k4,4 > k20me1_genes_0.25.bed
@@ -216,6 +221,7 @@ For processing CUT&RUN sequencing files. See documentation here for more informa
 For z-Normalizing bigwig files. See [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r).
 ### Run code
 ```
+module load deeptools
 deeptools bigwigAverage -b OregonR_H4K20me1_rep1_allFrags_rpgcNorm.bw OregonR_H4K20me1_rep2_allFrags_rpgcNorm.bw OregonR_H4K20me1_rep3_allFrags_rpgcNorm.bw -bs 1 -o OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw
 deeptools bigwigAverage -b OregonR_no_primary_rep1_allFrags_rpgcNorm.bw OregonR_no_primary_rep2_allFrags_rpgcNorm.bw OregonR_no_primary_rep3_allFrags_rpgcNorm.bw -bs 1 -o OregonR_no_primary_allFrags_rpgcNorm_allReps_avg.bw
 deeptools bigwigAverage -b ChIP_H4K20me1_rep1_allFrags_rpgcNorm.bw ChIP_H4K20me1_rep2_allFrags_rpgcNorm.bw -bs 1 -o ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw
@@ -253,8 +259,11 @@ From [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K
     - ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw
 ### Run code
 ```
-deeptools computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.75.bed' 'k20me1_genes_0.5.bed' 'k20me1_genes_0.25.bed' 'k20me1_genes_0.1.bed' 'nok20me1_genes.bed'  --scoreFileName 'OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw' 'ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw'  --samplesLabel 'Oregon-R wing disc CUT&RUN' 'Oregon-R whole larvae ChIP-seq'  --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-deeptools plotHeatmap
+module load deeptools
+computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.75_only.bed' 'k20me1_genes_0.5_only.bed' 'k20me1_genes_0.25_only.bed' 'k20me1_genes_0.1_only.bed' 'no_k20me1_genes.bed'  --scoreFileName 'OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw' 'ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw'  --samplesLabel 'Oregon-R wing disc CUT&RUN' 'Oregon-R whole larvae ChIP-seq'  --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
+```
+```
+plotHeatmap --matrixFile h4k20me1_gene_overlap_computeMatrix --outFileName h4k20me1_gene_overlap.pdf --plotFileFormat 'pdf' --dpi '200' --sortRegions 'descend' --sortUsing 'mean'  --averageTypeSummaryPlot 'mean'  --plotType 'lines'  --missingDataColor 'black'  --colorMap Greens  --alpha '1.0'   --sortUsingSamples 1  --heatmapWidth 7.5 --heatmapHeight 25.0  --whatToShow 'plot and heatmap'  --startLabel 'TSS' --endLabel 'TES'  --regionsLabel over0.75 over0.5 over0.25 over0.1 nok20me1   --legendLocation 'best'  --labelRotation '0' 
 ```
 ### Expected outputs
 #### Plot in FIGURE 1D
@@ -270,16 +279,30 @@ GSM4210275
 GSM4210276
 GSM4210277
 #### [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
-#### Salmon_protein_coding_index #NEED THIS STILL
-#### make_Salmon_scripts #NEED THIS STILL
-#### sample_sheet_wt_RNA-seq.txt
+#### buildSalmonIndex.sh
+Shell script that builds the required index for executing Salmon 
+#### dmel-all-transcript-r6.55.fasta.gz
+Drosophila transcripts
+#### dmel-all-chromosome-r6.55.fasta.gz
+Drososphila genome
+#### decoys.txt
+Decoy sequences using the entire Drosophila genome (see https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon for more details)
+#### run_salmon.py
+Python script that runs Salmon quantification
+#### sample_sheet_RNA-seq_wild-type.txt
 #### From [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
 k20me1_genes_0.1.bed - genes with > 10% H4K20me1 overlap
-k20me1_genes_0.25.bed - genes with > 525% H4K20me1 overlap
+k20me1_genes_0.25.bed - genes with > 25% H4K20me1 overlap
 k20me1_genes_0.5.bed - genes with > 50% H4K20me1 overlap
 k20me1_genes_0.75.bed - genes with > 75% H4K20me1 overlap
 #### [wt_H4K20me1_gene_expression_correlation.R](#wt_H4K20me1_gene_expression_correlation.R)
 ### Run code
+#### Download .fastq files from GEO. 
+#### Build protein-coding Salmon index 
+Download dmel-all-transcript-r6.55.fasta.gz and dmel-all-chromosome-r6.55.fasta.gz from FlyBase and ensure those files, decoys.txt, and buildSalmonIndex.sh are in the same working directory. Run buildSalmonIndex.sh
+#### Run RNA-seq pipeline (https://github.com/DuronioLab/RNAseq-pipeline) to perform quality control and trim adapters
+#### Run Salmon
+Ensure Salmon index, run_salmon.py, and sample_sheet_RNA-seq_wild-type.txt are in the same working directory. Update run_salmon with appropriate index name, sample sheet name, and path to trimmed fastq files. Run run_salmon.py
 ### Expected outputs
 #### Plot in FIGURE 1E
 
