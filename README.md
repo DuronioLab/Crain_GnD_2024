@@ -168,9 +168,10 @@ This Rscript uses ChIPseeker to annotate the peak file and produce an upset plot
 ### Calculate H4K20me1 peak gene overlap
 #### Required files
 ##### H4K20me1.vs.no_primary.peaks.bed (GSE268819)
+This is the peak file generated in the previous section and is available to download directly from GEO.
 ##### H4K20me1_genes.R
 #### Run code
-This code uses bedtools to determine overlap of H4K20me1 peaks with genes. H4K20me1_genes.R is used to construct the protein_genes_r6.55.bed file and to create non-overlapping gene bins for each category.
+This code uses bedtools to determine overlap of H4K20me1 peaks with genes. H4K20me1_genes.R is used to construct the protein_genes_r6.55.bed and nok20me1.bed files and to create non-overlapping gene bins for each category.
 ```
 bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed | sort -u -k4,4 > k20me1_genes_anyOverlap.bed
 bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.1 | sort -u -k4,4 > k20me1_genes_0.1.bed
@@ -178,6 +179,7 @@ bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.be
 bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.50 | sort -u -k4,4 > k20me1_genes_0.5.bed
 bedtools intersect -a protein_genes_r6.55.bed -b H4K20me1.vs.no_primary.peaks.bed -f 0.75 | sort -u -k4,4 > k20me1_genes_0.75.bed
 ```
+Run Rscript
 #### Expected outputs
 ##### protein_genes_r6.55.bed
 ##### k20me1_genes_anyOverlap.bed - genes with > 1bp H4K20me1 overlap
