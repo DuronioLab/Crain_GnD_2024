@@ -302,7 +302,7 @@ k20me1_genes_0.75.bed - genes with > 75% H4K20me1 overlap
 Download dmel-all-transcript-r6.55.fasta.gz and dmel-all-chromosome-r6.55.fasta.gz from FlyBase and ensure those files, decoys.txt, and buildSalmonIndex.sh are in the same working directory. Run buildSalmonIndex.sh
 #### Run RNA-seq pipeline (https://github.com/DuronioLab/RNAseq-pipeline) to perform quality control and trim adapters
 #### Run Salmon
-Ensure Salmon index, run_salmon.py, and sample_sheet_RNA-seq_wild-type.txt are in the same working directory. Update run_salmon with appropriate index name, sample sheet name, and path to trimmed fastq files. Run run_salmon.py
+Ensure Salmon index, run_salmon.py, and sample_sheet_RNA-seq_wild-type.txt are in the same working directory. Update run_salmon with appropriate index name, sample sheet name, and path to trimmed fastq files. Run run_salmon.py. 
 ### Expected outputs
 #### Plot in FIGURE 1E
 
@@ -310,25 +310,24 @@ Ensure Salmon index, run_salmon.py, and sample_sheet_RNA-seq_wild-type.txt are i
 ### Required files
 #### H4K20me1 CUT&RUN fastqs (GSE268819)
 GSM8299933-GSM8299959
-#### H4K20me1_SRPMC_scaling_factors.txt
+#### H4K20me1_CnR_sample_sheet.txt
 #### CUT&RUN pipeline
 For processing CUT&RUN sequencing files. See documentation here for more information [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline) 
-#### spikeNorm_SRPMC.sh ##NEED THIS STILL
+#### h4k20me1_spikeNorm_SRPMC.sh
 ### Run code
-RPGC bigwigs
 ### Expected outputs
 Spike-in normalized bigwigs
 
 ## Make H4K20me1 spike-in normalized heatmaps
 ### Required files
 #### H4K20me1 spike-normalized bigwigs (GSE268819)
-OregonR_spikeNorm_K20me1_allReps_avg.bw
-Set8null_spikeNorm_K20me1_allReps_avg.bw
-Set8wt_spikeNorm_K20me1_allReps_avg.bw
-Set8rg_spikeNorm_K20me1_allReps_avg.bw
-HWT_spikeNorm_K20me1_allReps_avg.bw
-K20A_spikeNorm_K20me1_allReps_avg.bw
-K20R_spikeNorm_K20me1_allReps_avg.bw
+##### OregonR_spikeNorm_K20me1_allReps_avg.bw
+##### Set8null_spikeNorm_K20me1_allReps_avg.bw
+##### Set8wt_spikeNorm_K20me1_allReps_avg.bw
+##### Set8rg_spikeNorm_K20me1_allReps_avg.bw
+##### HWT_spikeNorm_K20me1_allReps_avg.bw
+##### K20A_spikeNorm_K20me1_allReps_avg.bw
+##### K20R_spikeNorm_K20me1_allReps_avg.bw
 ### Run code
 ```
 deeptools computeMatrix scale-regions --regionsFileName 'H4K20me1.vs.no_primary.peaks.bed'  --scoreFileName 'OregonR_spikeNorm_K20me1_allReps_avg.bw' 'Set8null_spikeNorm_K20me1_allReps_avg.bw' 'Set8wt_spikeNorm_K20me1_allReps_avg.bw' 'Set8rg_spikeNorm_K20me1_allReps_avg.bw' 'HWT_spikeNorm_K20me1_allReps_avg.bw' 'K20A_spikeNorm_K20me1_allReps_avg.bw' 'K20R_spikeNorm_K20me1_allReps_avg.bw'--samplesLabel 'Oregon-R' 'Set8null' 'Set8wt' 'Set8rg' 'HWT' 'H4K20A' 'H4K20R'--regionBodyLength 200 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
