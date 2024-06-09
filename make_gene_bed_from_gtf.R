@@ -28,6 +28,6 @@ make_bed_files <- function(gene_list_list) {
   }
 }
 
-list_for_bed <- list("protein_genes_r6.55.bed" = gtf_protein_genes
+list_for_bed <- list("protein_genes_r6.55" = gtf_protein_genes
 )
 make_bed_files(list_for_bed)
