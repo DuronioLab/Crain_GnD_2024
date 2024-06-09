@@ -8,7 +8,7 @@
     - [Required files](#required-files)
         - [H4K20me1 CUT&RUN fastq files (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
-        - [H4K20me1_CnR_sample_sheet](#H4K20me1_CnR_sample_sheet)
+        - [H4K20me1_CnR_sample_sheet.txt](#H4K20me1_CnR_sample_sheet.txt)
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
     - [Run code](#run_code)
     - [Expected output](#expected_output)
@@ -146,6 +146,9 @@ For processing CUT&RUN sequencing files. See documentation here for more informa
 #### call_peaks_H4K20me1_CnR.R
 This R script takes bam files from the CUT&RUN pipeline as input. Aligned reads are binned into 150bp windows that overlap by 50bp using the csaw package and significant windows (OregonR_H4K20me1 vs. OregonR_no_primary) are determined by edgeR. Significant windows within 1kb are merged to make final H4K20me1 peaks.
 ### Run code
+#### Run CUT&RUN pipeline
+#### Move H4K20me1_CnR_sample_sheet.txt, call_peaks_H4K20me1_CnR.R, and OregonR and OregonR_no_primary .bam and .bai files into the same working directory and/or ensure the Path_to_bam matches from H4K20me1_CnR_sample_sheet.txt matches the .bam and .bai file names and paths.
+#### Run R script
 ### Expected output
 H4K20me1.vs.no_primary.peaks.bed - a bed file with H4K20me1 peaks. 
 
@@ -153,12 +156,15 @@ H4K20me1.vs.no_primary.peaks.bed - a bed file with H4K20me1 peaks.
 ### Make upsetplot
 #### Required files
 ##### H4K20me1.vs.no_primary.peaks.bed (GSE268819)
-This is the peak file generated in the previous section.
+This is the peak file generated in the previous section and is available to download directly from GEO.
 ##### make_upsetplot.R
 This Rscript uses ChIPseeker to annotate the peak file and produce an upset plot depicting the genomic annotations of all H4K20me1 peaks. 
 #### Run code
+##### Download or move H4K20me1.vs.no_primary.peaks.bed into working directory.
+##### Run Rscript
 #### Expected output
 ##### Plot in FIGURE 1B
+
 ### Calculate H4K20me1 peak gene overlap
 #### Required files
 ##### H4K20me1.vs.no_primary.peaks.bed (GSE268819)
