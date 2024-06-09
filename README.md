@@ -12,7 +12,7 @@
         - [call_peaks_H4K20me1_CnR.R](#call_peaks_H4K20me1_CnR.R)
     - [Run code](#run_code)
     - [Expected output](#expected_output)
-- [Annotate H4K20me1 peaks](#annotate_H4K20me1_peaks)
+- [Annotate H4K20me1 peaks](#Annotate_H4K20me1_peaks)
     - [Make upsetplot](#make_upset_plot)
         - [Required files](#required-files)
             - [H4K20me1.vs.no_primary.peaks.bed (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
