@@ -22,6 +22,7 @@
     - [Calcluate H4K20me1 peak gene overlap](#calculate_H4K20me1_peak_gene_overlap)
         - [Required files](#required-files)
             - [H4K20me1.vs.no_primary.peaks.bed (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
+            - [make_gene_bed_from_gtf.R](#make_gene_bed_from_gtf.R)
             - [H4K20me1_genes.R](#H4K20me1_genes.R)
         - [Run code](#run_code)
         - [Expected outputs](#expected_outputs)
@@ -169,7 +170,10 @@ This Rscript uses ChIPseeker to annotate the peak file and produce an upset plot
 #### Required files
 ##### H4K20me1.vs.no_primary.peaks.bed (GSE268819)
 This is the peak file generated in the previous section and is available to download directly from GEO.
+##### make_gene_bed_from_gtf.R
+Rscript that takes a .gtf file, extracts protein-coding genes, and makes the protein_genes_r6.55.bed file
 ##### H4K20me1_genes.R
+Rscript that takes H4K20me1 gene overlap .bed files and generates the nok20me1.bed (<10% H4K20me1 overlap),  low_k20me1_genes.bed, and non-overlapping gene .bed files for each category
 #### Run code
 This code uses bedtools to determine overlap of H4K20me1 peaks with genes. H4K20me1_genes.R is used to construct the protein_genes_r6.55.bed and nok20me1.bed files and to create non-overlapping gene bins for each category.
 ```
@@ -188,11 +192,12 @@ Run Rscript
 ##### k20me1_genes_0.5.bed - genes with > 50% H4K20me1 overlap
 ##### k20me1_genes_0.75.bed - genes with > 75% H4K20me1 overlap
 
-##### nok20me1_genes.bed - genes with < 50% H4K20me1 overlap
+##### low_k20me1_genes.bed - genes with < 50% H4K20me1 overlap
 ##### k20me1_genes_0.75_only.bed - genes with > 75% H4K20me1 overlap
 ##### k20me1_genes_0.5_only.bed - genes with > 50% and < 75% H4K20me1 overlap
 ##### k20me1_genes_0.25_only.bed - genes with > 25% and < 50% H4K20me1 overlap
 ##### k20me1_genes_0.1_only.bed - genes with > 10% and < 25% H4K20me1 overlap
+##### no_k20me1_genes.bed - genes with < 10% H4K20me1 overlap
 
 ##### Plot in FIGURE 1C
 
