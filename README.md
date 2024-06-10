@@ -458,10 +458,12 @@ Spike-in normalized bigwigs
 ### Run code
 ```
 computeMatrix reference-point --regionsFileName 'GFP-L3mbt.vs.OregonR.peaks.bed' --scoreFileName 'GFP-L3mbt_spikeNorm_GFP_allReps_avg.bw' 'HWT_His4rnull_spikeNorm_GFP_allReps_avg.bw' 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'l3mbtGFP' 'HWT_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean' --missingDataAsZero --binSize 50
-deeptools plotHeatmap
 
-computeMatrix reference-point --regionsFileName 'sorted/filtered regions from l3mbtGFP and HWT_His4rnull_l3mbtGFP' --scoreFileName 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'H4K20R_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean' --missingDataAsZero --binSize 50
-deeptools plotHeatmap
+plotHeatmap --matrixFile l3mbt_spikeNorm_WT_computeMatrix --outFileName l3mbt_spikeNorm_WT_heatmap.pdf --plotFileFormat 'pdf' --dpi '200' --sortRegions 'descend' --sortUsing 'mean'  --averageTypeSummaryPlot 'mean'  --plotType 'lines'  --missingDataColor 'black'  --colorMap Blues Blues  --alpha '1.0'   --sortUsingSamples 1  --heatmapWidth 7.5 --heatmapHeight 25.0  --whatToShow 'plot and heatmap' --legendLocation 'best'  --labelRotation '0' --outFileSortedRegions sorted_regions_from_WT
+
+computeMatrix reference-point --regionsFileName sorted_regions_from_WT --scoreFileName H4K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw --samplesLabel 'H4K20R_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --averageTypeBins 'mean' --missingDataAsZero --binSize 50 --outFileName l3mbt_spikeNorm_mutant_computeMatrix
+
+plotHeatmap --matrixFile l3mbt_spikeNorm_mutant_computeMatrix --outFileName l3mbt_spikeNorm_mutant_heatmap.pdf --plotFileFormat 'pdf' --dpi '200'  --averageTypeSummaryPlot 'mean'  --plotType 'lines'  --missingDataColor 'black'  --colorMap Blues  --alpha '1.0'   --sortUsingSamples 1  --heatmapWidth 7.5 --heatmapHeight 25.0  --whatToShow 'plot and heatmap' --legendLocation 'best'  --labelRotation '0'
 ```
 ### Expected outputs
 Plots in FIGURE 6F
