@@ -4,16 +4,19 @@ import shutil
 import csv
 
 # Path to sample sheet
-sample_sheet = "sample_sheet_RNA-seq_transposon_analysis_K9R.txt"
+# Replace with appropriate path to sample sheet
+sample_sheet = "sample_sheet.txt"
 
 # Path to Salmon index
-salmon_index = "dm6_r6.56_all_genes_plus_transposons_piRNAs_repeats_salmon_index"
+# Replace with appropriate path to salmon index
+salmon_index = "salmon_index"
 
 # Path to folder containing input fastq files
-input_folder = "/work/users/a/c/acrain12/shell_scripts_for_GnD_paper/Final_code_tests/transposon_analysis/"
+# Replace with appropriate path to fastq files
+input_folder = "/Path_to_Fastq/"
 
 # Path to output folder
-output_folder = "dm6_r6.55_protein_genes_salmon_quant/"
+output_folder = "salmon_quant/"
 
 # Library type
 library_type = "A"
