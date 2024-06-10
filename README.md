@@ -220,7 +220,7 @@ Run H4K20me1_genes.R to generate k20me1_genes_0.75_only, k20me1_genes_0.5_only, 
 ##### protein_genes_r6.55.bed
 ##### k20me1_genes_anyOverlap.bed - genes with > 1bp H4K20me1 overlap
 ##### k20me1_genes_0.1.bed - genes with > 10% H4K20me1 overlap
-##### k20me1_genes_0.25.bed - genes with > 525% H4K20me1 overlap
+##### k20me1_genes_0.25.bed - genes with > 25% H4K20me1 overlap
 ##### k20me1_genes_0.5.bed - genes with > 50% H4K20me1 overlap
 ##### k20me1_genes_0.75.bed - genes with > 75% H4K20me1 overlap
 
@@ -425,13 +425,18 @@ Pass l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw and l3mbt_ChIP_all_Fra
 #### processed bigwigs from [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq) and [Process wild-type GFP-L(3)mbt CUT&RUN and L(3)mbt ChIP-seq](#Process_wild-type_GFP_CUT&RUN)
 ### Run code
 ```
-computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.5.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-plotProfile
+computeMatrix reference-point --regionsFileName protein_genes_r6.55.bed --scoreFileName OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --referencePoint TSS --beforeRegionStartLength 3000 --afterRegionStartLength 3000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50 --outFileName h4k20me1_l3mbt_6C_computeMatrix
 ```
 ```
-computeMatrix reference-point --regionsFileName 'genes_r6.55.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --referencePoint TSS --beforeRegionStartLength 3000 --afterRegionStartLength 3000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-plotHeatmap
+plotHeatmap --matrixFile h4k20me1_l3mbt_6C_computeMatrix --outFileName h4k20me1_l3mbt_heatmap_6C.pdf --plotFileFormat 'pdf' --dpi '200' --sortRegions 'descend' --sortUsing 'mean'  --averageTypeSummaryPlot 'mean'  --plotType 'lines'  --missingDataColor 'black'  --colorMap Greens Blues Blues  --alpha '1.0'   --sortUsingSamples 1  --heatmapWidth 7.5 --heatmapHeight 25.0  --whatToShow 'plot and heatmap'   --legendLocation 'best'  --labelRotation '0'
 ```
+```
+computeMatrix scale-regions --regionsFileName k20me1_genes_0.5.bed --scoreFileName OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50 -o h4k20me1_l3mbt_6D_computeMatrix
+```
+```
+plotProfile --matrixFile h4k20me1_l3mbt_6D_computeMatrix --outFileName h4k20me1_l3mbt.pdf  --plotFileFormat 'pdf'  --dpi '200' --plotType 'lines' --yAxisLabel 'Normalized Signal' --startLabel 'TSS' --endLabel 'TES' --legendLocation 'best'  --labelRotation '0'  --perGroup
+```
+
 ### Expected outputs
 Plots in FIGURES 6C and D
 
@@ -441,7 +446,7 @@ Plots in FIGURES 6C and D
 GSM8299960-GSM8299967
 #### GFP_SRPMC_scaling_factors.txt
 #### [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
-#### spikeNorm_SRPMC.sh ##NEED THIS STILL
+#### gfp_spikeNorm_SRPMC.sh
 ### Run code
 ### Expected outputs
 Spike-in normalized bigwigs
@@ -452,10 +457,10 @@ Spike-in normalized bigwigs
 #### spike-in normalized bigwigs from [Spike-in normalization for GFP CUT&RUN](#Spike-in_normalization_for_GFP_CUT&RUN)
 ### Run code
 ```
-deeptools computeMatrix reference-point --regionsFileName 'GFP-L3mbt.vs.OregonR.peaks.bed' --scoreFileName 'GFP-L3mbt_spikeNorm_GFP_allReps_avg.bw' 'HWT_His4rnull_spikeNorm_GFP_allReps_avg.bw' 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'l3mbtGFP' 'HWT_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean' --missingDataAsZero --binSize 50
+computeMatrix reference-point --regionsFileName 'GFP-L3mbt.vs.OregonR.peaks.bed' --scoreFileName 'GFP-L3mbt_spikeNorm_GFP_allReps_avg.bw' 'HWT_His4rnull_spikeNorm_GFP_allReps_avg.bw' 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'l3mbtGFP' 'HWT_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean' --missingDataAsZero --binSize 50
 deeptools plotHeatmap
 
-deeptools computeMatrix reference-point --regionsFileName 'sorted/filtered regions from l3mbtGFP and HWT_His4rnull_l3mbtGFP' --scoreFileName 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'H4K20R_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean' --missingDataAsZero --binSize 50
+computeMatrix reference-point --regionsFileName 'sorted/filtered regions from l3mbtGFP and HWT_His4rnull_l3mbtGFP' --scoreFileName 'K20R_His4rnull_spikeNorm_GFP_allReps_avg.bw' --samplesLabel 'H4K20R_His4rnull_l3mbtGFP' --referencePoint center --beforeRegionStartLength 3000 --afterRegionStartLength 3000 --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean' --missingDataAsZero --binSize 50
 deeptools plotHeatmap
 ```
 ### Expected outputs
