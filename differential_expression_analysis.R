@@ -251,17 +251,16 @@ volcano <- function(results.df,l2fc,sig_thresh,filter_genes,filter_name,dot_cols
 }
 
 dot_cols <- c("dodgerblue3", "firebrick3", "#99CCFF", "#EEAAAA", "grey")
-dot_cols2 <- c("firebrick3", "#99CCFF", "#EEAAAA", "grey")
-dot_cols3 <- c("#99CCFF", "#EEAAAA", "grey")
+dot_cols2 <- c("#99CCFF", "#EEAAAA", "grey")
 
 #set8null
 volcano(resLFC_Set8null_ashr.df,1,0.01,k20me1_genes$gene_symbol,"h4k20me1",dot_cols)
 
 #set8rg
-volcano(resLFC_Set8rg_ashr.df,1,0.01,k20me1_genes$gene_symbol,"h4k20me1",dot_cols2)
+volcano(resLFC_Set8rg_ashr.df,1,0.01,k20me1_genes$gene_symbol,"h4k20me1",dot_cols)
 
 #K20A
-volcano(resLFC_K20A_ashr.df,1,0.01,k20me1_genes$gene_symbol,"h4k20me1",dot_cols3)
+volcano(resLFC_K20A_ashr.df,1,0.01,k20me1_genes$gene_symbol,"h4k20me1",dot_cols2)
 
 #K20R
 volcano(resLFC_K20R_ashr.df,1,0.01,k20me1_genes$gene_symbol,"h4k20me1",dot_cols)
