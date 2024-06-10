@@ -1,6 +1,8 @@
 # Crain_GnD_2024
 ## Author: Aaron Crain
 
+[![DOI](https://zenodo.org/badge/811012687.svg)](https://zenodo.org/doi/10.5281/zenodo.11550660)
+
 **Table of Contents**
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
