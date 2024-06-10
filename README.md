@@ -63,7 +63,8 @@
         - [H4K20me1 CUT&RUN fastq files (GSE268819)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?&acc=GSE268819)
         - [H4K20me1_CnR_sample_sheet](#H4K20me1_CnR_sample_sheet)
         - [CUT&RUN pipeline](https://github.com/snystrom/cutNrun-pipeline)
-        - [gfp_spikeNorm_SRPMC.sh](#gfp_spikeNorm_SRPMC.sh)
+        - [dm6.chrom.sizes](#dm6.chrom.sizes)
+        - [h4k20me1_spikeNorm_SRPMC.sh](#h4k20me1_spikeNorm_SRPMC.sh)
     - [Run code](#run_code)
     - [Expected outputs](#expected_outputs)
         - Spike-in normalized CUT&RUN bigwigs
