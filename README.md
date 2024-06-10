@@ -397,12 +397,12 @@ GSM722523-722526
 #### [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
 ### Run code
 ```
-deeptools bigwigAverage -b l3mbtGFP_rep1_all_Frags_rpgcNorm.bw l3mbtGFP_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbtGFP_all_Frags_rpgcNorm_allReps_avg.bw
-deeptools bigwigAverage -b OregonR_rep1_all_Frags_rpgcNorm.bw OregonR_rep2_all_Frags_rpgcNorm.bw -bs 1 -o OregonR_all_Frags_rpgcNorm_allReps_avg.bw
-deeptools bigwigAverage -b l3mbt_ChIP_rep1_all_Frags_rpgcNorm.bw l3mbt_ChIP_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg.bw
-deeptools bigwigAverage -b l3mbt_input_rep1_all_Frags_rpgcNorm.bw l3mbt_input_rep2_all_Frags_rpgcNorm.bw -bs 1 -o l3mbt_input_all_Frags_rpgcNorm_allReps_avg.bw
-deeptools bigwigCompare -b1 l3mbtGFP_all_Frags_rpgcNorm_allReps_avg.bw -b2 OregonR_all_Frags_rpgcNorm_allReps_avg.bw -bs 1 -o l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw
-deeptools bigwigCompare -b1 l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg.bw -b2 l3mbt_input_all_Frags_rpgcNorm_allReps_avg.bw -bs 1 -o l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw
+bigwigAverage -b l3mbtGFP_rep1_all_Frags_rpgcNorm.bw l3mbtGFP_rep2_all_Frags_rpgcNorm.bw --scaleFactors '1' --binSize 1 -o l3mbtGFP_all_Frags_rpgcNorm_allReps_avg.bw --outFileFormat 'bigwig'
+bigwigAverage -b OregonR_rep1_all_Frags_rpgcNorm.bw OregonR_rep2_all_Frags_rpgcNorm.bw --scaleFactors '1' --binSize 1 -o OregonR_all_Frags_rpgcNorm_allReps_avg.bw --outFileFormat 'bigwig'
+bigwigAverage -b l3mbt_ChIP_rep1_all_Frags_rpgcNorm.bw l3mbt_ChIP_rep2_all_Frags_rpgcNorm.bw --scaleFactors '1' --binSize 1 -o l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg.bw --outFileFormat 'bigwig'
+bigwigAverage -b l3mbt_input_rep1_all_Frags_rpgcNorm.bw l3mbt_input_rep2_all_Frags_rpgcNorm.bw --scaleFactors '1' --binSize 1 -o l3mbt_input_all_Frags_rpgcNorm_allReps_avg.bw --outFileFormat 'bigwig'
+bigwigCompare -b1 l3mbtGFP_all_Frags_rpgcNorm_allReps_avg.bw -b2 OregonR_all_Frags_rpgcNorm_allReps_avg.bw --operation ratio --pseudocount 1 1 --scaleFactors '1.0:1.0' --binSize 1 -o l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --outFileFormat 'bigwig'
+bigwigCompare -b1 l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg.bw -b2 l3mbt_input_all_Frags_rpgcNorm_allReps_avg.bw --operation ratio --pseudocount 1 1 --scaleFactors '1.0:1.0' --binSize 1 -o l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --outFileFormat 'bigwig'
 ```
 Pass l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw and l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw individually to [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
 ### Expected outputs
@@ -425,12 +425,12 @@ Pass l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw and l3mbt_ChIP_all_Fra
 #### processed bigwigs from [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K20me1_wing_disc_CUT&RUN_and_whole_larvae_ChIP-seq) and [Process wild-type GFP-L(3)mbt CUT&RUN and L(3)mbt ChIP-seq](#Process_wild-type_GFP_CUT&RUN)
 ### Run code
 ```
-deeptools computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.5.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-deeptools plotProfile
+computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.5.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
+plotProfile
 ```
 ```
-deeptools computeMatrix reference-point --regionsFileName 'genes_r6.55.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --referencePoint TSS --beforeRegionStartLength 3000 --afterRegionStartLength 3000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-deeptools plotHeatmap
+computeMatrix reference-point --regionsFileName 'genes_r6.55.bed' --scoreFileName 'OregonR_k20me1_rpgc_avg_allReps_ratioCtrl_zNorm.bw' 'l3mbtGFP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw' l3mbt_ChIP_all_Frags_rpgcNorm_allReps_avg_ratioCtrl.bw --samplesLabel 'H4K20me1' 'GFP-L(3)mbt' 'L(3)mbt_Richter_et_al' --referencePoint TSS --beforeRegionStartLength 3000 --afterRegionStartLength 3000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
+plotHeatmap
 ```
 ### Expected outputs
 Plots in FIGURES 6C and D
