@@ -260,10 +260,10 @@ From [Process H4K20me1 wing disc CUT&RUN and whole larvae ChIP-seq](#Process_H4K
 ### Run code
 ```
 module load deeptools
-computeMatrix scale-regions --regionsFileName 'k20me1_genes_0.75_only.bed' 'k20me1_genes_0.5_only.bed' 'k20me1_genes_0.25_only.bed' 'k20me1_genes_0.1_only.bed' 'no_k20me1_genes.bed'  --scoreFileName 'OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw' 'ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw'  --samplesLabel 'Oregon-R wing disc CUT&RUN' 'Oregon-R whole larvae ChIP-seq'  --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
+computeMatrix scale-regions --regionsFileName k20me1_genes_0.75_only.bed k20me1_genes_0.5_only.bed k20me1_genes_0.25_only.bed k20me1_genes_0.1_only.bed no_k20me1_genes.bed  --scoreFileName OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl_zNorm.bw  --samplesLabel 'Oregon-R wing disc CUT&RUN' 'Oregon-R whole larvae ChIP-seq'  --regionBodyLength 1000 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50 -o h4k20me1_gene_overlap_computeMatrix
 ```
 ```
-plotHeatmap --matrixFile h4k20me1_gene_overlap_computeMatrix --outFileName h4k20me1_gene_overlap.pdf --plotFileFormat 'pdf' --dpi '200' --sortRegions 'descend' --sortUsing 'mean'  --averageTypeSummaryPlot 'mean'  --plotType 'lines'  --missingDataColor 'black'  --colorMap Greens  --alpha '1.0'   --sortUsingSamples 1  --heatmapWidth 7.5 --heatmapHeight 25.0  --whatToShow 'plot and heatmap'  --startLabel 'TSS' --endLabel 'TES'  --regionsLabel over0.75 over0.5 over0.25 over0.1 nok20me1   --legendLocation 'best'  --labelRotation '0' 
+plotHeatmap --matrixFile h4k20me1_gene_overlap_computeMatrix --outFileName h4k20me1_gene_overlap.pdf --plotFileFormat 'pdf' --dpi '200' --sortRegions 'descend' --sortUsing 'mean'  --averageTypeSummaryPlot 'mean'  --plotType 'lines'  --missingDataColor 'black'  --colorMap Greens  --alpha '1.0'   --sortUsingSamples 1  --heatmapWidth 7.5 --heatmapHeight 25.0  --whatToShow 'plot and heatmap'  --startLabel 'TSS' --endLabel 'TES'  --regionsLabel over0.75 over0.5 over0.25 over0.1 nok20me1   --legendLocation 'best'  --labelRotation '0'
 ```
 ### Expected outputs
 #### Plot in FIGURE 1D
@@ -330,8 +330,11 @@ Spike-in normalized bigwigs
 ##### K20R_spikeNorm_K20me1_allReps_avg.bw
 ### Run code
 ```
-deeptools computeMatrix scale-regions --regionsFileName 'H4K20me1.vs.no_primary.peaks.bed'  --scoreFileName 'OregonR_spikeNorm_K20me1_allReps_avg.bw' 'Set8null_spikeNorm_K20me1_allReps_avg.bw' 'Set8wt_spikeNorm_K20me1_allReps_avg.bw' 'Set8rg_spikeNorm_K20me1_allReps_avg.bw' 'HWT_spikeNorm_K20me1_allReps_avg.bw' 'K20A_spikeNorm_K20me1_allReps_avg.bw' 'K20R_spikeNorm_K20me1_allReps_avg.bw'--samplesLabel 'Oregon-R' 'Set8null' 'Set8wt' 'Set8rg' 'HWT' 'H4K20A' 'H4K20R'--regionBodyLength 200 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50
-deeptools plotHeatmap
+module load deeptools
+computeMatrix scale-regions --regionsFileName H4K20me1.vs.no_primary.peaks.bed --scoreFileName OregonR_spikeNorm_K20me1_allReps_avg.bw Set8null_spikeNorm_K20me1_allReps_avg.bw Set8wt_spikeNorm_K20me1_allReps_avg.bw Set8rg_spikeNorm_K20me1_allReps_avg.bw HWT_spikeNorm_K20me1_allReps_avg.bw K20A_spikeNorm_K20me1_allReps_avg.bw K20R_spikeNorm_K20me1_allReps_avg.bw --samplesLabel 'Oregon-R' 'Set8null' 'Set8wt' 'Set8rg' 'HWT' 'H4K20A' 'H4K20R' --regionBodyLength 200 --beforeRegionStartLength 1000 --afterRegionStartLength 1000  --unscaled5prime 0 --unscaled3prime 0 --sortRegions 'keep' --sortUsing 'mean' --averageTypeBins 'mean'  --missingDataAsZero --binSize 50 -o h4k20me1_spikeNorm_computeMatrix
+```
+```
+plotHeatmap --matrixFile h4k20me1_spikeNorm_computeMatrix --outFileName h4k20me1_spikeNorm.pdf  --plotFileFormat 'pdf'    --dpi '200'  --sortRegions 'descend'   --sortUsing 'mean'  --averageTypeSummaryPlot 'mean'  --plotType 'lines'  --missingDataColor 'black'  --colorMap Greens  --alpha '1.0'   --sortUsingSamples 1  --xAxisLabel NA --yAxisLabel 'H4K20me1 peaks'  --heatmapWidth 7.5 --heatmapHeight 25.0  --whatToShow 'plot and heatmap'  --startLabel 'Peak_start' --endLabel 'Peak_end'  --samplesLabel or set8null set8wt set8rg hwt k20a k20r --regionsLabel k20me1_peaks   --legendLocation 'best'  --labelRotation '0'
 ```
 ### Expected output
 #### Plot in FIGURE 2A
@@ -341,8 +344,8 @@ deeptools plotHeatmap
 #### Whole larvae RNA-seq fastq files (GSE268821)
 GSM8299968-8300014
 #### [RNA-seq pipeline](https://github.com/DuronioLab/RNAseq-pipeline)
-#### Salmon_protein_coding_index #NEED STILL
-#### make_Salmon_scripts #NEED STILL
+#### Salmon protein coding genes index from [H4K20me1 gene expression correlation](#H4K20me1_gene_expression_correlation)
+#### run_salmon.py
 #### sample_sheet_RNA-seq_3wl.txt
 #### [differential_expression_analysis.R](#differential_expression_analysis.R)
 ### Run code
