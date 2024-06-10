@@ -223,12 +223,12 @@ For z-Normalizing bigwig files. See [zNorm.R](https://github.com/snystrom/cutNru
 ### Run code
 ```
 module load deeptools
-deeptools bigwigAverage -b OregonR_H4K20me1_rep1_allFrags_rpgcNorm.bw OregonR_H4K20me1_rep2_allFrags_rpgcNorm.bw OregonR_H4K20me1_rep3_allFrags_rpgcNorm.bw -bs 1 -o OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw
-deeptools bigwigAverage -b OregonR_no_primary_rep1_allFrags_rpgcNorm.bw OregonR_no_primary_rep2_allFrags_rpgcNorm.bw OregonR_no_primary_rep3_allFrags_rpgcNorm.bw -bs 1 -o OregonR_no_primary_allFrags_rpgcNorm_allReps_avg.bw
-deeptools bigwigAverage -b ChIP_H4K20me1_rep1_allFrags_rpgcNorm.bw ChIP_H4K20me1_rep2_allFrags_rpgcNorm.bw -bs 1 -o ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw
-deeptools bigwigAverage -b input_H4K20me1_rep1_allFrags_rpgcNorm.bw input_H4K20me1_rep2_allFrags_rpgcNorm.bw -bs 1 -o input_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw
-deeptools bigwigCompare -b1 OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw -b2 OregonR_no_primary_allFrags_rpgcNorm_allReps_avg.bw -bs 1 -o OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw
-deeptools bigwigCompare -b1 ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw -b2 input_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw -bs 1 -o ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw
+bigwigAverage -b OregonR_H4K20me1_rep1_allFrags_rpgcNorm.bw OregonR_H4K20me1_rep2_allFrags_rpgcNorm.bw OregonR_H4K20me1_rep3_allFrags_rpgcNorm.bw --scaleFactors '1' --binSize 1 -o OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw --outFileFormat 'bigwig'
+bigwigAverage -b OregonR_no_primary_rep1_allFrags_rpgcNorm.bw OregonR_no_primary_rep2_allFrags_rpgcNorm.bw OregonR_no_primary_rep3_allFrags_rpgcNorm.bw --scaleFactors '1' --binSize 1 -o OregonR_no_primary_allFrags_rpgcNorm_allReps_avg.bw --outFileFormat 'bigwig'
+bigwigAverage -b ChIP_H4K20me1_rep1_allFrags_rpgcNorm.bw ChIP_H4K20me1_rep2_allFrags_rpgcNorm.bw --scaleFactors '1' --binSize 1 -o ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw --outFileFormat 'bigwig'
+bigwigAverage -b input_H4K20me1_rep1_allFrags_rpgcNorm.bw input_H4K20me1_rep2_allFrags_rpgcNorm.bw --scaleFactors '1' --binSize 1 -o input_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw --outFileFormat 'bigwig'
+bigwigCompare -b1 OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw -b2 OregonR_no_primary_allFrags_rpgcNorm_allReps_avg.bw --operation ratio --pseudocount 1 1      --scaleFactors '1.0:1.0' --binSize 1 -o OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw --outFileFormat 'bigwig'
+bigwigCompare -b1 ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw -b2 input_H4K20me1_allFrags_rpgcNorm_allReps_avg.bw --operation ratio --pseudocount 1 1 --scaleFactors '1.0:1.0' --binSize 1 -o ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw --outFileFormat 'bigwig'
 ```
 Pass OregonR_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw and ChIP_H4K20me1_allFrags_rpgcNorm_allReps_avg_ratioCtrl.bw individually to [zNorm.R](https://github.com/snystrom/cutNrun-pipeline/blob/master/scripts/zNorm.r)
 ### Expected outputs
